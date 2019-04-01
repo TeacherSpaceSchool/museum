@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aef3c9e9-2922-42a5-aaa5-79ce22b59d1a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/precache-manifest.ceb1b33f21dc36d7743b4f7c5d859926.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/main.a4509113.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/main.a4509113.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/precache-manifest.fb896245758061be1485efa4eb0709f2.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/1.2210252d.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/1.2210252d.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/runtime~main.53b6a8c0.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/runtime~main.53b6a8c0.js.map" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aclient/asset-manifest.json" afterPath="$PROJECT_DIR$/aclient/asset-manifest.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aclient/index.html" afterPath="$PROJECT_DIR$/aclient/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aclient/service-worker.js" afterPath="$PROJECT_DIR$/aclient/service-worker.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/asset-manifest.json" afterPath="$PROJECT_DIR$/admin/asset-manifest.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/index.html" afterPath="$PROJECT_DIR$/admin/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/service-worker.js" afterPath="$PROJECT_DIR$/admin/service-worker.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/artwork/artworkMuseumKNMII.js" afterPath="$PROJECT_DIR$/models/artwork/artworkMuseumKNMII.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/artworkMuseum.js" afterPath="$PROJECT_DIR$/module/artworkMuseum.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/data.js" afterPath="$PROJECT_DIR$/routes/data.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -36,12 +20,39 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="data.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="data.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/data.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="803">
-              <caret line="344" column="41" lean-forward="false" selection-start-line="344" selection-start-column="41" selection-end-line="344" selection-end-column="41" />
-              <folding />
+            <state relative-caret-position="21">
+              <caret line="207" column="60" lean-forward="true" selection-start-line="207" selection-start-column="60" selection-end-line="207" selection-end-column="60" />
+              <folding>
+                <element signature="e#958#1226#0" expanded="false" />
+                <element signature="e#1276#3805#0" expanded="false" />
+                <element signature="e#3849#5554#0" expanded="false" />
+                <element signature="e#5601#8790#0" expanded="false" />
+                <element signature="e#12522#13312#0" expanded="false" />
+                <element signature="e#13372#14651#0" expanded="false" />
+                <element signature="e#13409#14243#0" expanded="false" />
+                <element signature="e#14710#15589#0" expanded="false" />
+                <element signature="e#15647#16617#0" expanded="false" />
+                <element signature="e#16687#17460#0" expanded="false" />
+                <element signature="e#17529#18542#0" expanded="false" />
+                <element signature="e#18604#19444#0" expanded="false" />
+                <element signature="e#19503#20428#0" expanded="false" />
+                <element signature="e#20499#21497#0" expanded="false" />
+                <element signature="e#22227#24265#0" expanded="false" />
+                <element signature="e#24406#25040#0" expanded="false" />
+                <element signature="e#25088#26115#0" expanded="false" />
+                <element signature="e#25113#25779#0" expanded="false" />
+                <element signature="e#26162#26861#0" expanded="false" />
+                <element signature="e#26907#27673#0" expanded="false" />
+                <element signature="e#27731#28348#0" expanded="false" />
+                <element signature="e#28405#29226#0" expanded="false" />
+                <element signature="e#29276#29948#0" expanded="false" />
+                <element signature="e#30001#31527#0" expanded="false" />
+                <element signature="e#31574#32307#0" expanded="false" />
+                <element signature="e#32366#33172#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -59,18 +70,30 @@
       <file leaf-file-name="artworkMuseumKNMII.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/artwork/artworkMuseumKNMII.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="64" column="8" lean-forward="false" selection-start-line="64" selection-start-column="4" selection-end-line="64" selection-end-column="8" />
+            <state relative-caret-position="0">
+              <caret line="0" column="35" lean-forward="false" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="artworkMuseum.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="artworkMuseum.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/module/artworkMuseum.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="247" column="16" lean-forward="false" selection-start-line="247" selection-start-column="16" selection-end-line="247" selection-end-column="16" />
+            <state relative-caret-position="355">
+              <caret line="39" column="20" lean-forward="false" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+              <folding>
+                <element signature="e#6114#13060#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="genreArtworkMuseum.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/module/genreArtworkMuseum.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="18" lean-forward="false" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -202,8 +225,8 @@
         <option value="$PROJECT_DIR$/module/virtualMuseum.js" />
         <option value="$PROJECT_DIR$/module/const.js" />
         <option value="$PROJECT_DIR$/models/artwork/artworkMuseumKNMII.js" />
-        <option value="$PROJECT_DIR$/routes/data.js" />
         <option value="$PROJECT_DIR$/module/artworkMuseum.js" />
+        <option value="$PROJECT_DIR$/routes/data.js" />
       </list>
     </option>
   </component>
@@ -246,7 +269,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -336,7 +359,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -472,12 +495,17 @@
       <workItem from="1551935383670" duration="1507000" />
       <workItem from="1552369496295" duration="480000" />
       <workItem from="1552449531152" duration="907000" />
-      <workItem from="1552458896313" duration="3483000" />
+      <workItem from="1552458896313" duration="3669000" />
+      <workItem from="1553259095917" duration="42000" />
+      <workItem from="1553674322690" duration="3026000" />
+      <workItem from="1553958404893" duration="225000" />
+      <workItem from="1553969973513" duration="17000" />
+      <workItem from="1554100470823" duration="1143000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="305792000" />
+    <option name="totallyTimeSpent" value="310431000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -490,13 +518,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14068441" sideWeight="0.70620435" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14068441" sideWeight="0.66240877" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14068441" sideWeight="0.29379562" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14068441" sideWeight="0.33759123" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26244953" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24629879" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -733,13 +760,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/module/genreArtworkMuseum.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="18" lean-forward="false" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/module/itemMuseum.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -790,27 +810,64 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/data.js">
+    <entry file="file://$PROJECT_DIR$/module/genreArtworkMuseum.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="803">
-          <caret line="344" column="41" lean-forward="false" selection-start-line="344" selection-start-column="41" selection-end-line="344" selection-end-column="41" />
+        <state relative-caret-position="170">
+          <caret line="10" column="18" lean-forward="false" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/artwork/artworkMuseumKNMII.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="64" column="8" lean-forward="false" selection-start-line="64" selection-start-column="4" selection-end-line="64" selection-end-column="8" />
+        <state relative-caret-position="0">
+          <caret line="0" column="35" lean-forward="false" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/module/artworkMuseum.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="247" column="16" lean-forward="false" selection-start-line="247" selection-start-column="16" selection-end-line="247" selection-end-column="16" />
-          <folding />
+        <state relative-caret-position="355">
+          <caret line="39" column="20" lean-forward="false" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+          <folding>
+            <element signature="e#6114#13060#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="207" column="60" lean-forward="true" selection-start-line="207" selection-start-column="60" selection-end-line="207" selection-end-column="60" />
+          <folding>
+            <element signature="e#958#1226#0" expanded="false" />
+            <element signature="e#1276#3805#0" expanded="false" />
+            <element signature="e#3849#5554#0" expanded="false" />
+            <element signature="e#5601#8790#0" expanded="false" />
+            <element signature="e#12522#13312#0" expanded="false" />
+            <element signature="e#13372#14651#0" expanded="false" />
+            <element signature="e#13409#14243#0" expanded="false" />
+            <element signature="e#14710#15589#0" expanded="false" />
+            <element signature="e#15647#16617#0" expanded="false" />
+            <element signature="e#16687#17460#0" expanded="false" />
+            <element signature="e#17529#18542#0" expanded="false" />
+            <element signature="e#18604#19444#0" expanded="false" />
+            <element signature="e#19503#20428#0" expanded="false" />
+            <element signature="e#20499#21497#0" expanded="false" />
+            <element signature="e#22227#24265#0" expanded="false" />
+            <element signature="e#24406#25040#0" expanded="false" />
+            <element signature="e#25088#26115#0" expanded="false" />
+            <element signature="e#25113#25779#0" expanded="false" />
+            <element signature="e#26162#26861#0" expanded="false" />
+            <element signature="e#26907#27673#0" expanded="false" />
+            <element signature="e#27731#28348#0" expanded="false" />
+            <element signature="e#28405#29226#0" expanded="false" />
+            <element signature="e#29276#29948#0" expanded="false" />
+            <element signature="e#30001#31527#0" expanded="false" />
+            <element signature="e#31574#32307#0" expanded="false" />
+            <element signature="e#32366#33172#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
