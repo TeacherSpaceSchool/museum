@@ -198,13 +198,29 @@ router.post('/add', async (req, res) => {
                 }
                 stream.on('finish', async () => {
                     let image = await Jimp.read(filepath)
+                    console.log('1')
                     if(image.bitmap.width>1500||image.bitmap.height>1500) {
+                        console.log('2')
                         await image.resize(1500, Jimp.AUTO);
                         await image.write(filepath);
                     }
+                    console.log('3')
                     image = await Jimp.read(filepath)
+                    console.log('4')
                     await image.resize(320, Jimp.AUTO);
                     await image.write(filepathThumbnail);
+                    if(req.body.name == 'Произведение') {
+                        let font = await Jimp.loadFont(Jimp.FONT_SANS_32_WHITE);
+                        image = await Jimp.read(filepath)
+                        console.log('5')
+                        await image.print(font, 10, 10, 'KNMII')
+                        await image.write(filepathWhatermark);
+                        image = await Jimp.read(filepath)
+                        console.log('6')
+                        await image.print(font, 10, 10, 'KNMII')
+                        await image.resize(320, Jimp.AUTO)
+                        await image.write(filepathWhatermarkThumbnail);
+                    }
                     if(i===parseInt(req.body.fileLength)-1){
                         if(req.body.name == 'О музее'){
                             data = {
@@ -356,50 +372,38 @@ router.post('/add', async (req, res) => {
                                 await AuthorArtworkMuseum.setAuthorArtworkMuseumKNMII(data, req.body.id)
                             await res.send(await AuthorArtworkMuseum.getAuthorArtworkMuseumKNMII(req.body.search, req.body.sort, req.body.skip))
                         }
-                    }
-                    if(req.body.name == 'Произведение') {
-                        let font = await Jimp.loadFont(Jimp.FONT_SANS_32_WHITE);
-                        image = await Jimp.read(filepath)
-                        await image.print(font, 10, 10, 'KNMII')
-                        await image.write(filepathWhatermark);
-                        image = await Jimp.read(filepath)
-                        await image.print(font, 10, 10, 'KNMII')
-                        await image.resize(320, Jimp.AUTO)
-                        await image.write(filepathWhatermarkThumbnail);
-                        if(i===parseInt(req.body.fileLength)-1){
-                            if(req.body.name == 'Произведение'){
-                                if(myNew.author=='')
-                                    myNew.author=null
-                                if(myNew.genre=='')
-                                    myNew.genre=null
-                                data = {
-                                    views: 0,
-                                    image_whatermark: whatermark,
-                                    image: photos,
-                                    image_thumbnail: photosThumbnail,
-                                    image_whatermar_thumbnail: whatermarkThumbnail,
-                                    name_ru: myNew.name_ru,
-                                    name_kg: myNew.name_kg,
-                                    name_eng: myNew.name_eng,
-                                    styleOrMaterial_ru: myNew.styleOrMaterial_ru,
-                                    styleOrMaterial_kg: myNew.styleOrMaterial_kg,
-                                    styleOrMaterial_eng: myNew.styleOrMaterial_eng,
-                                    size: myNew.size,
-                                    date: myNew.date,
-                                    year: myNew.year,
-                                    author: myNew.author,
-                                    genre: myNew.genre,
-                                    genre1: myNew.genre1,
-                                    description_ru: myNew.description_ru,
-                                    description_eng: myNew.description_eng,
-                                    description_kg: myNew.description_kg,
-                                };
-                                if(req.body.id==undefined)
-                                    await ArtworkMuseum.addArtworkMuseumKNMII(data)
-                                else
-                                    await ArtworkMuseum.setArtworkMuseumKNMII(data, req.body.id)
-                                await res.send(await ArtworkMuseum.getArtworkMuseumKNMII(req.body.search, req.body.sort, req.body.skip))
-                            }
+                        else if(req.body.name == 'Произведение'){
+                            if(myNew.author=='')
+                                myNew.author=null
+                            if(myNew.genre=='')
+                                myNew.genre=null
+                            data = {
+                                views: 0,
+                                image_whatermark: whatermark,
+                                image: photos,
+                                image_thumbnail: photosThumbnail,
+                                image_whatermar_thumbnail: whatermarkThumbnail,
+                                name_ru: myNew.name_ru,
+                                name_kg: myNew.name_kg,
+                                name_eng: myNew.name_eng,
+                                styleOrMaterial_ru: myNew.styleOrMaterial_ru,
+                                styleOrMaterial_kg: myNew.styleOrMaterial_kg,
+                                styleOrMaterial_eng: myNew.styleOrMaterial_eng,
+                                size: myNew.size,
+                                date: myNew.date,
+                                year: myNew.year,
+                                author: myNew.author,
+                                genre: myNew.genre,
+                                genre1: myNew.genre1,
+                                description_ru: myNew.description_ru,
+                                description_eng: myNew.description_eng,
+                                description_kg: myNew.description_kg,
+                            };
+                            if(req.body.id==undefined)
+                                await ArtworkMuseum.addArtworkMuseumKNMII(data)
+                            else
+                                await ArtworkMuseum.setArtworkMuseumKNMII(data, req.body.id)
+                            await res.send(await ArtworkMuseum.getArtworkMuseumKNMII(req.body.search, req.body.sort, req.body.skip))
                         }
                     }
                 })
