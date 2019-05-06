@@ -181,6 +181,8 @@ router.post('/add', async (req, res) => {
             whatermarkThumbnail = []
             for (let i = 0; i < parseInt(req.body.fileLength); i++) {
                 let filename = randomstring.generate(7) + req.body['fileName' + i];
+                while(filename.includes(','))
+                    filename = filename.replace(',', '')
                 let filepath = path.join(app.dirname, 'public', 'images', filename);
                 let filepathThumbnail = path.join(app.dirname, 'public', 'thumbnail', filename);
                 let fstream = fs.createWriteStream(filepath);
