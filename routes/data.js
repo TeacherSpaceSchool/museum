@@ -199,6 +199,7 @@ router.post('/add', async (req, res) => {
                     whatermarkThumbnail.push(myConst.url + 'thumbnail/' + filenameWhatermark)
                 }
                 stream.on('finish', async () => {
+                    console.log(filepath)
                     let image = await Jimp.read(filepath)
                     console.log('1')
                     if(image.bitmap.width>1500||image.bitmap.height>1500) {
