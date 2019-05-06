@@ -203,11 +203,11 @@ router.post('/add', async (req, res) => {
                         console.log(filepath)
                         let image = await Jimp.read(filepath)
                         console.log('1')
-                        if(image.bitmap.width>1500||image.bitmap.height>1500) {
+                        /*if(image.bitmap.width>1500||image.bitmap.height>1500) {
                             console.log('2')
                             await image.resize(1500, Jimp.AUTO);
                             await image.write(filepath);
-                        }
+                        }*/
                         console.log('3')
                         console.log(filepath)
                         image = await Jimp.read(filepath)
