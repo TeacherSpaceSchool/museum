@@ -207,7 +207,9 @@ router.post('/add', async (req, res) => {
                         await image.write(filepath);
                     }
                     console.log('3')
+                    console.log(filepath)
                     image = await Jimp.read(filepath)
+                    console.log(image)
                     console.log('4')
                     await image.resize(320, Jimp.AUTO);
                     await image.write(filepathThumbnail);
