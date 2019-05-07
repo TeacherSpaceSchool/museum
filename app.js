@@ -16,6 +16,8 @@ const formData = require('express-form-data');
 const nocache = require('nocache')
 const os = require('os');
 const compression = require('compression');
+const minify = require('express-minify');
+const expressAMP = require('express-amp');
 module.exports.dirname = __dirname;
 
 
@@ -33,6 +35,14 @@ connectDB.connect()
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+app.use(compression());
+app.use(expressAMP({
+    override: true,
+    //staticsPath: path.join(__dirname, 'public')
+}));
+app.use(minify());
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -41,8 +51,7 @@ app.use(express.static(path.join(__dirname, 'aclient')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'admin')));
 app.use(cors());
-app.use(compression());
-app.use(nocache())
+//app.use(nocache())
 // parse data with connect-multiparty.
 app.use(formData.parse(options));
 // clear from the request and delete all empty files (size == 0)
