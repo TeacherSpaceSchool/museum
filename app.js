@@ -49,7 +49,7 @@ app.use(express.static(path.join(__dirname, 'aclient')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'admin')));
 app.use(cors());
-app.use(nocache())
+//app.use(nocache())
 // parse data with connect-multiparty.
 app.use(formData.parse(options));
 // clear from the request and delete all empty files (size == 0)
