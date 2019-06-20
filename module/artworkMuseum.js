@@ -2,7 +2,7 @@ const ArtworkMuseumKNMII = require('../models/artwork/artworkMuseumKNMII');
 const format = require('date-format') ;
 
 const getById = async (id) => {
-    return await ArtworkMuseumKNMII.findOne({_id: id}).select('year genre1 description_ru description_kg description_eng name_kg image_whatermark image_whatermar_thumbnail name_ru styleOrMaterial_ru name_kg styleOrMaterial_kg name_eng styleOrMaterial_eng date author genre views').populate({path: 'genre', select: 'name_ru name_kg name_eng'}).populate({path: 'author', select: 'name yearsOfLife'})
+    return await ArtworkMuseumKNMII.findOne({_id: id}).select('size year genre1 description_ru description_kg description_eng name_kg image_whatermark image_whatermar_thumbnail name_ru styleOrMaterial_ru name_kg styleOrMaterial_kg name_eng styleOrMaterial_eng date author genre views').populate({path: 'genre', select: 'name_ru name_kg name_eng'}).populate({path: 'author', select: 'name yearsOfLife'})
 }
 
 const getStyleOrMaterial = async () => {
@@ -118,6 +118,7 @@ const getArtworkMuseumKNMII = async (search, sort, skip) => {
         'автор',
         'тип',
         'жанр',
+        'номер',
         'создан',
         '_id'
     ];
@@ -186,12 +187,12 @@ const getArtworkMuseumKNMII = async (search, sort, skip) => {
             .sort(sort)
             .skip(parseInt(skip))
             .limit(10)
-            .select('year image genre1 image_whatermark name_ru styleOrMaterial_ru description_ru description_kg description_eng name_kg styleOrMaterial_kg name_eng styleOrMaterial_eng size date author genre preservation motion reproduced views updatedAt _id')
             .populate({path: 'genre', select: 'name_ru name_kg name_eng'})
             .populate({path: 'author', select: 'name yearsOfLife'})
     } else {
         count = await ArtworkMuseumKNMII.count(
             {$or: [
+                {in: {'$regex': search, '$options': 'i'}},
                 {styleOrMaterial_ru: {'$regex': search, '$options': 'i'}},
                 {styleOrMaterial_eng: {'$regex': search, '$options': 'i'}},
                 {styleOrMaterial_kg: {'$regex': search, '$options': 'i'}},
@@ -207,6 +208,7 @@ const getArtworkMuseumKNMII = async (search, sort, skip) => {
         findResult = await ArtworkMuseumKNMII
             .find(
                 {$or: [
+                    {in: {'$regex': search, '$options': 'i'}},
                     {styleOrMaterial_ru: {'$regex': search, '$options': 'i'}},
                     {styleOrMaterial_eng: {'$regex': search, '$options': 'i'}},
                     {styleOrMaterial_kg: {'$regex': search, '$options': 'i'}},
@@ -222,7 +224,6 @@ const getArtworkMuseumKNMII = async (search, sort, skip) => {
             .sort(sort)
             .skip(parseInt(skip))
             .limit(10)
-            .select('year image image_whatermark genre1 name_ru styleOrMaterial_ru name_kg description_ru description_kg description_eng styleOrMaterial_kg name_eng styleOrMaterial_eng size date author genre preservation motion reproduced views updatedAt _id')
             .populate({
                 path: 'genre',
                 select: 'name_ru',
@@ -233,6 +234,7 @@ const getArtworkMuseumKNMII = async (search, sort, skip) => {
                 match: {name_ru: {'$regex': search, '$options': 'i'}}
             });
     }
+    console.log(findResult)
     for (let i=0; i<findResult.length; i++){
         let genre1 = ''
         if(findResult[i].genre1 != undefined)
@@ -243,10 +245,13 @@ const getArtworkMuseumKNMII = async (search, sort, skip) => {
         let genre = ''
         if(findResult[i].genre != undefined)
             genre = findResult[i].genre.name_ru+'\n'+findResult[i].genre._id
+        let in1 = ''
+        if(findResult[i].in != undefined)
+            in1 = findResult[i].in
         let year = ''
         if(findResult[i].year != undefined)
             year = findResult[i].year
-        data.push([findResult[i].image, findResult[i].image_whatermark, findResult[i].name_ru, findResult[i].styleOrMaterial_ru, findResult[i].description_ru, findResult[i].name_kg, findResult[i].styleOrMaterial_kg, findResult[i].description_kg, findResult[i].name_eng, findResult[i].styleOrMaterial_eng, findResult[i].description_eng, findResult[i].size, findResult[i].date, year, findResult[i].views, author, genre, genre1, format.asString('yyyy.dd.MM hh:mm', findResult[i].updatedAt), findResult[i]._id]);
+        data.push([findResult[i].image, findResult[i].image_whatermark, findResult[i].name_ru, findResult[i].styleOrMaterial_ru, findResult[i].description_ru, findResult[i].name_kg, findResult[i].styleOrMaterial_kg, findResult[i].description_kg, findResult[i].name_eng, findResult[i].styleOrMaterial_eng, findResult[i].description_eng, findResult[i].size, findResult[i].date, year, findResult[i].views, author, genre, genre1, in1, format.asString('yyyy.dd.MM hh:mm', findResult[i].updatedAt), findResult[i]._id]);
     }
     return {data: data, count: count, row: row}
 }
@@ -262,6 +267,7 @@ const addArtworkMuseumKNMII = async (object) => {
 
 const setArtworkMuseumKNMII = async (object, id) => {
     try{
+
         await ArtworkMuseumKNMII.findOneAndUpdate({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)

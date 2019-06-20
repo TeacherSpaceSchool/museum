@@ -200,29 +200,21 @@ router.post('/add', async (req, res) => {
                 }
                 stream.on('finish', async () => {
                     try{
-                        console.log(filepath)
                         let image = await Jimp.read(filepath)
-                        console.log('1')
                         /*if(image.bitmap.width>1500||image.bitmap.height>1500) {
                             console.log('2')
                             await image.resize(1500, Jimp.AUTO);
                             await image.write(filepath);
                         }*/
-                        console.log('3')
-                        console.log(filepath)
                         image = await Jimp.read(filepath)
-                        console.log(image)
-                        console.log('4')
                         await image.resize(320, Jimp.AUTO);
                         await image.write(filepathThumbnail);
                         if(req.body.name == 'Произведение') {
                             let font = await Jimp.loadFont(Jimp.FONT_SANS_32_WHITE);
                             image = await Jimp.read(filepath)
-                            console.log('5')
                             await image.print(font, 10, 10, 'KNMII')
                             await image.write(filepathWhatermark);
                             image = await Jimp.read(filepath)
-                            console.log('6')
                             await image.print(font, 10, 10, 'KNMII')
                             await image.resize(320, Jimp.AUTO)
                             await image.write(filepathWhatermarkThumbnail);
@@ -401,6 +393,7 @@ router.post('/add', async (req, res) => {
                                     author: myNew.author,
                                     genre: myNew.genre,
                                     genre1: myNew.genre1,
+                                    in: myNew.in,
                                     description_ru: myNew.description_ru,
                                     description_eng: myNew.description_eng,
                                     description_kg: myNew.description_kg,
@@ -557,6 +550,7 @@ router.post('/add', async (req, res) => {
                     author: myNew.author,
                     genre: myNew.genre,
                     genre1: myNew.genre1,
+                    in: myNew.in,
                     description_ru: myNew.description_ru,
                     description_eng: myNew.description_eng,
                     description_kg: myNew.description_kg,
