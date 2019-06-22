@@ -1,7 +1,7 @@
 {
   "main.css": "/static/css/main.61e5dadc.chunk.css",
-  "main.js": "/static/js/main.9b67c03a.chunk.js",
-  "main.js.map": "/static/js/main.9b67c03a.chunk.js.map",
+  "main.js": "/static/js/main.591dcc5c.chunk.js",
+  "main.js.map": "/static/js/main.591dcc5c.chunk.js.map",
   "static/css/1.22958c10.chunk.css": "/static/css/1.22958c10.chunk.css",
   "static/js/1.9633b5e6.chunk.js": "/static/js/1.9633b5e6.chunk.js",
   "static/js/1.9633b5e6.chunk.js.map": "/static/js/1.9633b5e6.chunk.js.map",
@@ -11,7 +11,7 @@
   "static/media/russia.svg": "/static/media/russia.965262d5.svg",
   "static/media/kyrgyzstan.svg": "/static/media/kyrgyzstan.fb2ea834.svg",
   "static/media/unitedstates.svg": "/static/media/unitedstates.07ba3996.svg",
-  "static/media/banya.jpg": "/static/media/banya.868ff1d8.jpg",
+  "static/media/banya.jpg": "/static/media/banya.91ef92c0.jpg",
   "static/media/comp.png": "/static/media/comp.cc6a13f4.png",
   "static/media/mobile.png": "/static/media/mobile.51373b03.png",
   "static/media/vverhstrelka.svg": "/static/media/vverhstrelka.75a849b8.svg",
@@ -19,6 +19,6 @@
   "static/css/main.61e5dadc.chunk.css.map": "/static/css/main.61e5dadc.chunk.css.map",
   "static/css/1.22958c10.chunk.css.map": "/static/css/1.22958c10.chunk.css.map",
   "index.html": "/index.html",
-  "precache-manifest.0d3598931d4050ffb2ad44194b0c37eb.js": "/precache-manifest.0d3598931d4050ffb2ad44194b0c37eb.js",
+  "precache-manifest.74b3da77fabd77ff946f1cb17903c305.js": "/precache-manifest.74b3da77fabd77ff946f1cb17903c305.js",
   "service-worker.js": "/service-worker.js"
 }
