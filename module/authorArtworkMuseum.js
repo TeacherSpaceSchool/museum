@@ -12,7 +12,7 @@ const getClient = async () => {
 const getAuthorArtworkMuseumKNMII = async (search, sort, skip) => {
     let findResult = [], data = [], count;
     const row = [
-        'фотография',
+        /*'фотография',*/
         'имя',
         'годы жизни',
         'биография',
@@ -82,7 +82,7 @@ const getAuthorArtworkMuseumKNMII = async (search, sort, skip) => {
         let photos = ''
         if(findResult[i].photos != undefined)
             photos = findResult[i].photos
-        data.push([ photos, findResult[i].name, findResult[i].yearsOfLife, findResult[i].biography_ru, findResult[i].biography_kg, findResult[i].biography_eng, format.asString('yyyy.dd.MM hh:mm', findResult[i].updatedAt), findResult[i]._id]);
+        data.push([ /*photos, */findResult[i].name, findResult[i].yearsOfLife, findResult[i].biography_ru, findResult[i].biography_kg, findResult[i].biography_eng, format.asString('yyyy.dd.MM hh:mm', findResult[i].updatedAt), findResult[i]._id]);
     }
     return {data: data, count: count, row: row}
 }
@@ -98,7 +98,7 @@ const addAuthorArtworkMuseumKNMII = async (object) => {
 
 const setAuthorArtworkMuseumKNMII = async (object, id) => {
     try{
-        await AuthorArtworkMuseumKNMII.findOneAndUpdate({_id: id}, {$set: object});
+        await AuthorArtworkMuseumKNMII.updateOne({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)
     }

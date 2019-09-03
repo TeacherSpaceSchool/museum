@@ -109,7 +109,7 @@ const addExcursionMuseumKNMII = async (object) => {
 
 const setExcursionMuseumKNMII = async (object, id) => {
     try{
-        await ExcursionMuseumKNMII.findOneAndUpdate({_id: id}, {$set: object});
+        await ExcursionMuseumKNMII.updateOne({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)
     }

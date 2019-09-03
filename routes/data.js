@@ -32,7 +32,8 @@ router.post('/getclient', async (req, res) => {
     } else if(req.body.name == 'ДругиеСобытия'){
         await res.send(await EventMuseum.getRandom())
     } else if(req.body.name == 'СтилиИлиМатериал'){
-        await res.send(await ArtworkMuseum.getStyleOrMaterial())
+        let data = JSON.parse(req.body.data)
+        await res.send(await ArtworkMuseum.getStyleOrMaterial(data.search))
     } else if(req.body.name == 'Авторы'){
         await res.send(await AuthorArtworkMuseum.getClient())
     } else if(req.body.name == 'О музее'){

@@ -86,7 +86,7 @@ const addVirtualMuseumKNMII = async (object) => {
 
 const setVirtualMuseumKNMII = async (object, id) => {
     try{
-        await VirtualMuseumKNMII.findOneAndUpdate({_id: id}, {$set: object});
+        await VirtualMuseumKNMII.updateOne({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)
     }

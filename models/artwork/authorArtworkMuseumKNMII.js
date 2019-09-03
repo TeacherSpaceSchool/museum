@@ -3,11 +3,11 @@ var mongoose = require('mongoose');
 const AuthorArtworkMuseumKNMIISchema = mongoose.Schema({
     photos: {
         type: String,
-        required: true
+        required: false
     },
     photos_thumbnail: {
         type: [String],
-        required: true
+        required: false
     },
     yearsOfLife: {
         type: String,

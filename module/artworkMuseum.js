@@ -5,8 +5,8 @@ const getById = async (id) => {
     return await ArtworkMuseumKNMII.findOne({_id: id}).select('size year genre1 description_ru description_kg description_eng name_kg image_whatermark image_whatermar_thumbnail name_ru styleOrMaterial_ru name_kg styleOrMaterial_kg name_eng styleOrMaterial_eng date author genre views').populate({path: 'genre', select: 'name_ru name_kg name_eng'}).populate({path: 'author', select: 'name yearsOfLife'})
 }
 
-const getStyleOrMaterial = async () => {
-    return await ArtworkMuseumKNMII.find().distinct('genre1')
+const getStyleOrMaterial = async (genre) => {
+    return await ArtworkMuseumKNMII.find({genre: genre}).distinct('genre1')
 }
 
 const view = async (id) => {
@@ -17,7 +17,7 @@ const view = async (id) => {
     if(data.views==undefined||data.views=='')
         data.views=0
     data = JSON.stringify(parseInt(data.views)+1)
-    await ArtworkMuseumKNMII.findOneAndUpdate(
+    await ArtworkMuseumKNMII.updateOne(
         {_id: id},
         {$set: {views: data}});
 }
@@ -268,7 +268,7 @@ const addArtworkMuseumKNMII = async (object) => {
 const setArtworkMuseumKNMII = async (object, id) => {
     try{
 
-        await ArtworkMuseumKNMII.findOneAndUpdate({_id: id}, {$set: object});
+        await ArtworkMuseumKNMII.updateOne({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)
     }

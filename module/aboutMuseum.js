@@ -87,7 +87,7 @@ const addAboutMuseumKNMII = async (object) => {
 
 const setAboutMuseumKNMII = async (object, id) => {
     try{
-        await AboutMuseumKNMII.findOneAndUpdate({_id: id}, {$set: object});
+        await AboutMuseumKNMII.updateOne({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)
     }
