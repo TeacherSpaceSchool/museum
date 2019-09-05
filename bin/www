@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const cluster = require('cluster');
+/*const cluster = require('cluster');
 const os = require('os');
 if (cluster.isMaster) {
     let cpuCount = os.cpus().length
@@ -7,7 +7,7 @@ if (cluster.isMaster) {
         cluster.fork();
         console.log('cluster '+i+' run')
     }
-} else {
+} else {*/
     var app = require('../app');
     var debug = require('debug')('museum-api:server');
     var http = require('http');
@@ -76,4 +76,4 @@ if (cluster.isMaster) {
             : 'port ' + addr.port;
         debug('Listening on ' + bind);
     }
-}
+/*}*/

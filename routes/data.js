@@ -35,7 +35,8 @@ router.post('/getclient', async (req, res) => {
         let data = JSON.parse(req.body.data)
         await res.send(await ArtworkMuseum.getStyleOrMaterial(data.search))
     } else if(req.body.name == 'Авторы'){
-        await res.send(await AuthorArtworkMuseum.getClient())
+        let data = JSON.parse(req.body.data)
+        await res.send(await AuthorArtworkMuseum.getClient(data.search))
     } else if(req.body.name == 'О музее'){
         await res.send(await AboutMuseum.getClient())
     } else if(req.body.name == 'Виртуальный музей'){

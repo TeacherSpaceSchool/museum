@@ -1,12 +1,14 @@
 const AuthorArtworkMuseumKNMII = require('../models/artwork/authorArtworkMuseumKNMII');
+const ArtworkMuseumKNMII = require('../models/artwork/artworkMuseumKNMII');
 const format = require('date-format') ;
 
 const getById = async (id) => {
     return await AuthorArtworkMuseumKNMII.findOne({_id: id})
 }
 
-const getClient = async () => {
-    return await AuthorArtworkMuseumKNMII.find();
+const getClient = async (search) => {
+    let authorsIds = await ArtworkMuseumKNMII.find({genre: search}).distinct('author')
+    return await AuthorArtworkMuseumKNMII.find({_id: {$in: authorsIds}});
 }
 
 const getAuthorArtworkMuseumKNMII = async (search, sort, skip) => {
