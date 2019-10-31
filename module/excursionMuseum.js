@@ -3,9 +3,10 @@ const format = require('date-format') ;
 
 const getClient = async () => {
     let types = await ExcursionMuseumKNMII.find().distinct('type_ru');
+    types.sort()
     let data = []
     for (let i = 0; i<types.length; i++){
-        data.push(await ExcursionMuseumKNMII.find({type_ru: types[i]}).select('name_ru name_kg name_eng type_ru type_kg type_eng'))
+        data.push(await ExcursionMuseumKNMII.find({type_ru: types[i]}).sort('name_ru'))
     }
     return data
 }
@@ -63,7 +64,6 @@ const getExcursionMuseumKNMII = async (search, sort, skip) => {
             .sort(sort)
             .skip(parseInt(skip))
             .limit(10)
-            .select('name_ru name_kg name_eng type_ru type_kg type_eng updatedAt _id');
     } else {
         count = await ExcursionMuseumKNMII.count({
             $or: [
@@ -89,7 +89,6 @@ const getExcursionMuseumKNMII = async (search, sort, skip) => {
             .sort(sort)
             .skip(parseInt(skip))
             .limit(10)
-            .select('name_ru type_ru name_kg type_kg name_eng type_eng updatedAt _id');
     }
     for (let i=0; i<findResult.length; i++){
         data.push([findResult[i].name_ru, findResult[i].type_ru, findResult[i].name_kg, findResult[i].type_kg, findResult[i].name_eng, findResult[i].type_eng, format.asString('yyyy.dd.MM hh:mm', findResult[i].updatedAt), findResult[i]._id]);

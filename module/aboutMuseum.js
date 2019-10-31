@@ -44,7 +44,6 @@ const getAboutMuseumKNMII = async (search, sort, skip) => {
             .sort(sort)
             .skip(parseInt(skip))
             .limit(10)
-            .select('photos biography_ru biography_kg biography_eng updatedAt _id');
     } else {
         count = await AboutMuseumKNMII.count({
             $or: [
@@ -63,7 +62,6 @@ const getAboutMuseumKNMII = async (search, sort, skip) => {
             .sort(sort)
             .skip(parseInt(skip))
             .limit(10)
-            .select('photos biography_ru biography_kg biography_eng updatedAt _id');
     }
     for (let i=0; i<findResult.length; i++){
         let photos=findResult[i].photos.toString();

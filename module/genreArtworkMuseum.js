@@ -3,7 +3,7 @@ const format = require('date-format') ;
 
 const getClient = async (search) => {
     if(search===''||search==='all')
-        return await GenreArtworkMuseumKNMII.find();
+        return await GenreArtworkMuseumKNMII.find().sort('name_ru');
     else
         return await GenreArtworkMuseumKNMII.findOne({_id: search});
 }
@@ -62,7 +62,6 @@ const getGenreArtworkMuseumKNMII = async (search, sort, skip) => {
             .sort(sort)
             .skip(parseInt(skip))
             .limit(10)
-            .select('photo name_ru description_ru name_kg description_kg name_eng description_eng updatedAt _id');
     }
     else {
         count = await GenreArtworkMuseumKNMII.count({
@@ -88,7 +87,6 @@ const getGenreArtworkMuseumKNMII = async (search, sort, skip) => {
             .sort(sort)
             .skip(parseInt(skip))
             .limit(10)
-            .select('photo name_ru description_ru name_kg description_kg name_eng description_eng updatedAt _id');
     }
     for (let i=0; i<findResult.length; i++){
         data.push([findResult[i].photo, findResult[i].name_ru, findResult[i].description_ru, findResult[i].name_kg, findResult[i].description_kg, findResult[i].name_eng, findResult[i].description_eng, format.asString('yyyy.dd.MM hh:mm', findResult[i].updatedAt), findResult[i]._id]);
@@ -123,7 +121,7 @@ const deleteGenreArtworkMuseumKNMII = async (id) => {
 
 const getIdsGenreArtworkMuseumKNMII = async () => {
     try{
-        return(await GenreArtworkMuseumKNMII.find().select('_id name_ru'));
+        return(await GenreArtworkMuseumKNMII.find());
     } catch(error) {
         console.error(error)
     }

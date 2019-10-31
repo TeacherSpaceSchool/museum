@@ -8,7 +8,7 @@ const getById = async (id) => {
 const getClient = async (skip) => {
     return await ItemMuseumKNMII
         .find()
-        .sort('-updatedAt')
+        .sort('name')
         .skip(parseInt(skip))
         .limit(30)
 }
@@ -59,7 +59,6 @@ const getItemMuseumKNMII = async (search, sort, skip) => {
             .sort(sort)
             .skip(parseInt(skip))
             .limit(10)
-            .select('image description name styleOrMaterial date price author updatedAt _id')
     } else {
         count = await ItemMuseumKNMII.count(
             {$or: [
@@ -81,7 +80,6 @@ const getItemMuseumKNMII = async (search, sort, skip) => {
             .sort(sort)
             .skip(parseInt(skip))
             .limit(10)
-            .select('image description name styleOrMaterial date price author updatedAt _id')
     }
     for (let i=0; i<findResult.length; i++){
         data.push([findResult[i].image, findResult[i].name, findResult[i].styleOrMaterial, findResult[i].description, findResult[i].date, findResult[i].author, findResult[i].price, format.asString('yyyy.dd.MM hh:mm', findResult[i].updatedAt), findResult[i]._id]);

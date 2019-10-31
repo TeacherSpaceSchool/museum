@@ -60,7 +60,6 @@ const getNameMuseumKNMII = async (search, sort, skip) => {
             .sort(sort)
             .skip(parseInt(skip))
             .limit(10)
-            .select('photo name_ru name_kg name_eng adress phonenumber email url updatedAt _id');
     } else{
         count = await NameMuseumKNMII.count({
             $or: [
@@ -88,7 +87,6 @@ const getNameMuseumKNMII = async (search, sort, skip) => {
             .sort(sort)
             .skip(parseInt(skip))
             .limit(10)
-            .select('photo name_ru name_kg name_eng updatedAt _id adress phonenumber email url');
     }
     for (let i=0; i<findResult.length; i++){
         data.push([findResult[i].photo, findResult[i].name_ru, findResult[i].name_kg, findResult[i].name_eng, findResult[i].adress, findResult[i].phonenumber, findResult[i].email, findResult[i].url, format.asString('yyyy.dd.MM hh:mm', findResult[i].updatedAt), findResult[i]._id]);
@@ -98,7 +96,7 @@ const getNameMuseumKNMII = async (search, sort, skip) => {
 
 const getClient = async () => {
     return {
-        data: await NameMuseumKNMII.find().select('photo name_ru name_kg name_eng adress phonenumber email url')
+        data: await NameMuseumKNMII.find().sort('name_ru')
     }
 }
 

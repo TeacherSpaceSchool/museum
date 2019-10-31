@@ -2,7 +2,7 @@ const VirtualMuseumKNMII = require('../models/virtualMuseum/virtualMuseumKNMII')
 const format = require('date-format') ;
 
 const getClient = async () => {
-    return await VirtualMuseumKNMII.find();
+    return await VirtualMuseumKNMII.find().sort('name_ru');
 }
 
 const getVirtualMuseumKNMII = async (search, sort, skip) => {
@@ -44,7 +44,6 @@ const getVirtualMuseumKNMII = async (search, sort, skip) => {
             .sort(sort)
             .skip(parseInt(skip))
             .limit(10)
-            .select('photos name_ru name_kg name_eng updatedAt _id');
     } else{
         count = await VirtualMuseumKNMII.count({
             $or: [
@@ -64,7 +63,6 @@ const getVirtualMuseumKNMII = async (search, sort, skip) => {
             .sort(sort)
             .skip(parseInt(skip))
             .limit(10)
-            .select('photos name_ru name_kg name_eng updatedAt _id');
     }
     for (let i=0; i<findResult.length; i++){
         let photos=findResult[i].photos.toString();

@@ -2,11 +2,13 @@ const ArtworkMuseumKNMII = require('../models/artwork/artworkMuseumKNMII');
 const format = require('date-format') ;
 
 const getById = async (id) => {
-    return await ArtworkMuseumKNMII.findOne({_id: id}).select('size year genre1 description_ru description_kg description_eng name_kg image_whatermark image_whatermar_thumbnail name_ru styleOrMaterial_ru name_kg styleOrMaterial_kg name_eng styleOrMaterial_eng date author genre views').populate({path: 'genre', select: 'name_ru name_kg name_eng'}).populate({path: 'author', select: 'name yearsOfLife'})
+    return await ArtworkMuseumKNMII.findOne({_id: id}).populate({path: 'genre', select: 'name_ru name_kg name_eng'}).populate({path: 'author', select: 'name yearsOfLife'})
 }
 
 const getStyleOrMaterial = async (genre) => {
-    return await ArtworkMuseumKNMII.find({genre: genre}).distinct('genre1')
+    let data = await ArtworkMuseumKNMII.find({genre: genre}).distinct('genre1')
+    data.sort()
+    return data
 }
 
 const view = async (id) => {
@@ -26,37 +28,33 @@ const getClient = async (search, sort, skip, genre) => {
     if(sort===''){
         return await ArtworkMuseumKNMII
             .find({genre: genre})
-            .sort('-updatedAt')
+            .sort('name_ru')
             .skip(parseInt(skip))
             .limit(30)
-            .select('year genre1 description_ru description_kg description_eng name_kg image_whatermark image_whatermar_thumbnail name_ru styleOrMaterial_ru name_kg styleOrMaterial_kg name_eng styleOrMaterial_eng date author genre views')
             .populate({path: 'genre', select: 'name_ru name_kg name_eng'})
             .populate({path: 'author', select: 'name yearsOfLife'})
     } else if(sort==='styleOrMaterial'){
         return await ArtworkMuseumKNMII
             .find({genre: genre, genre1: search})
-            .sort('-updatedAt')
+            .sort('name_ru')
             .skip(parseInt(skip))
             .limit(30)
-            .select('year genre1 description_ru description_kg description_eng name_kg image_whatermark image_whatermar_thumbnail name_ru styleOrMaterial_ru name_kg styleOrMaterial_kg name_eng styleOrMaterial_eng date author genre views')
             .populate({path: 'genre', select: 'name_ru name_kg name_eng'})
             .populate({path: 'author', select: 'name yearsOfLife'})
     } else if(sort==='author'){
         return await ArtworkMuseumKNMII
             .find({genre: genre, author: search})
-            .sort('-updatedAt')
+            .sort('name_ru')
             .skip(parseInt(skip))
             .limit(30)
-            .select('year genre1 description_ru description_kg description_eng name_kg image_whatermark image_whatermar_thumbnail name_ru styleOrMaterial_ru name_kg styleOrMaterial_kg name_eng styleOrMaterial_eng date author genre views')
             .populate({path: 'genre', select: 'name_ru name_kg name_eng'})
             .populate({path: 'author', select: 'name yearsOfLife'})
     } else if(sort==='date'){
           return await ArtworkMuseumKNMII
             .find({genre: genre, date: { '$regex': search, '$options': 'i' } })
-            .sort('-updatedAt')
+            .sort('name_ru')
             .skip(parseInt(skip))
             .limit(30)
-            .select('year genre1 description_ru description_kg description_eng name_kg image_whatermark image_whatermar_thumbnail name_ru styleOrMaterial_ru name_kg styleOrMaterial_kg name_eng styleOrMaterial_eng date author genre views')
             .populate({path: 'genre', select: 'name_ru name_kg name_eng'})
             .populate({path: 'author', select: 'name yearsOfLife'})
     }
@@ -66,33 +64,28 @@ const getRandom = async (search, sort) => {
     if(sort==='')
         return await ArtworkMuseumKNMII.findRandom()
             .limit(4)
-            .select('year genre1 description_ru description_kg description_eng image_whatermark image_whatermar_thumbnail name_ru styleOrMaterial_ru name_kg styleOrMaterial_kg name_eng styleOrMaterial_eng date author genre views')
             .populate({path: 'genre', select: 'name_ru name_kg name_eng'})
             .populate({path: 'author', select: 'name yearsOfLife'})
     else if(sort==='author'){
         return await ArtworkMuseumKNMII.findRandom({author: search})
             .limit(4)
-            .select('year genre1 description_ru description_kg description_eng image_whatermark image_whatermar_thumbnail name_ru styleOrMaterial_ru name_kg styleOrMaterial_kg name_eng styleOrMaterial_eng date author genre views')
             .populate({path: 'genre', select: 'name_ru name_kg name_eng'})
             .populate({path: 'author', select: 'name yearsOfLife'})
     }
     else if(sort==='styleOrMaterial'){
         return await ArtworkMuseumKNMII.findRandom({$or: [{styleOrMaterial_ru: search}, {styleOrMaterial_kg: search}, {styleOrMaterial_eng: search}]})
             .limit(4)
-            .select('year genre1 mage_whatermark image_whatermar_thumbnail name_ru styleOrMaterial_ru name_kg styleOrMaterial_kg name_eng styleOrMaterial_eng date author genre views')
             .populate({path: 'genre', select: 'name_ru name_kg name_eng'})
             .populate({path: 'author', select: 'name yearsOfLife'})
     }
     else if(sort==='date'){
         return await ArtworkMuseumKNMII.findRandom({date: {'$regex': search, '$options': 'i'}})
             .limit(4)
-            .select('year genre1 description_ru description_kg description_eng image_whatermark image_whatermar_thumbnail name_ru styleOrMaterial_ru name_kg styleOrMaterial_kg name_eng styleOrMaterial_eng date author genre views')
             .populate({path: 'genre', select: 'name_ru name_kg name_eng'})
             .populate({path: 'author', select: 'name yearsOfLife'})
     } else if(sort==='genre')
         return await ArtworkMuseumKNMII.findRandom({genre: search})
             .limit(4)
-            .select('year genre1 description_ru description_kg description_eng image_whatermark image_whatermar_thumbnail name_ru styleOrMaterial_ru name_kg styleOrMaterial_kg name_eng styleOrMaterial_eng date author genre views')
             .populate({path: 'genre', select: 'name_ru name_kg name_eng'})
             .populate({path: 'author', select: 'name yearsOfLife'})
 }

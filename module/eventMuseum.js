@@ -2,40 +2,44 @@ const EventMuseumKNMII = require('../models/eventMuseum/eventMuseumKNMII');
 const format = require('date-format') ;
 
 const getById = async (id) => {
-    return await EventMuseumKNMII.findOne({_id: id}).select('photos photos_thumbnail name_ru name_kg name_eng type_ru type_kg type_eng dateStart description_eng description_ru description_kg dateEnd')
+    return await EventMuseumKNMII.findOne({_id: id})
 }
 
 const getType = async () => {
-    return {ru: await EventMuseumKNMII.find().distinct('type_ru'), kg: await EventMuseumKNMII.find().distinct('type_kg'), eng: await EventMuseumKNMII.find().distinct('type_eng')}
+    let data_ru = await EventMuseumKNMII.find().distinct('type_ru')
+    data_ru.sort()
+    let data_eng = await EventMuseumKNMII.find().distinct('type_kg')
+    data_eng.sort()
+    let data_kg = await EventMuseumKNMII.find().distinct('type_eng')
+    data_kg.sort()
+    return {
+        ru: data_ru,
+        kg: data_kg,
+        eng: data_eng
+    }
 }
 
 const getClient = async (search, sort, skip) => {
     let today = new Date();
     if(sort===''){
         return await EventMuseumKNMII
-            .find({dateEnd: {$gte: today}})
-            .sort('-updatedAt')
+            .find(/*{dateEnd: {$gte: today}}*/)
+            .sort('-dateStart')
             .skip(parseInt(skip))
             .limit(30)
-            .sort('dateStart')
-            .select('photos photos_thumbnail name_ru name_kg name_eng type_ru type_kg type_eng dateStart description_eng description_ru description_kg dateEnd')
     } else if(sort==='type'){
         return await EventMuseumKNMII
-            .find({$and: [{dateEnd: {$gte: today}}, {$or: [{type_ru: search}, {type_kg: search}, {type_eng: search}]}]})
-            .sort('-updatedAt')
+            .find({$and: [/*{dateEnd: {$gte: today}}, */{$or: [{type_ru: search}, {type_kg: search}, {type_eng: search}]}]})
+            .sort('-dateStart')
             .skip(parseInt(skip))
             .limit(30)
-            .sort('dateStart')
-            .select('photos photos_thumbnail name_ru name_kg name_eng type_ru type_kg type_eng dateStart description_eng description_ru description_kg dateEnd')
     } else if(sort==='date'){
         search = new Date(search)
         return await EventMuseumKNMII
-            .find({dateEnd: {$gte: search}})
-            .sort('-updatedAt')
+            .find(/*{dateEnd: {$gte: search}}*/)
+            .sort('-dateStart')
             .skip(parseInt(skip))
             .limit(30)
-            .sort('dateStart')
-            .select('photos photos_thumbnail name_ru name_kg name_eng type_ru type_kg type_eng dateStart description_eng description_ru description_kg dateEnd')
     }
 }
 
@@ -43,7 +47,6 @@ const getRandom = async () => {
     let today = new Date();
     return await EventMuseumKNMII.findRandom({dateEnd: {$gte: today}})
         .limit(3)
-        .select('photos photos_thumbnail name_ru name_kg name_eng type_ru type_kg type_eng dateStart description_eng description_ru description_kg dateEnd');
 }
 
 const getEventMuseumKNMII = async (search, sort, skip) => {
@@ -125,7 +128,6 @@ const getEventMuseumKNMII = async (search, sort, skip) => {
             .sort(sort)
             .skip(parseInt(skip))
             .limit(10)
-            .select('photos name_ru name_kg name_eng type_ru type_kg type_eng dateStart description_eng description_ru description_kg dateEnd updatedAt _id');
     } else {
         count = await EventMuseumKNMII.count({
             $or: [
@@ -161,7 +163,6 @@ const getEventMuseumKNMII = async (search, sort, skip) => {
             .sort(sort)
             .skip(parseInt(skip))
             .limit(10)
-            .select('photos name_ru name_kg name_eng type_ru type_kg type_eng dateStart description_eng description_ru description_kg dateEnd updatedAt _id');
     }
     for (let i=0; i<findResult.length; i++){
         let photos=findResult[i].photos.toString();

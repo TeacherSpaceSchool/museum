@@ -8,7 +8,7 @@ const getById = async (id) => {
 
 const getClient = async (search) => {
     let authorsIds = await ArtworkMuseumKNMII.find({genre: search}).distinct('author')
-    return await AuthorArtworkMuseumKNMII.find({_id: {$in: authorsIds}});
+    return await AuthorArtworkMuseumKNMII.find({_id: {$in: authorsIds}}).sort('name');
 }
 
 const getAuthorArtworkMuseumKNMII = async (search, sort, skip) => {
@@ -60,7 +60,6 @@ const getAuthorArtworkMuseumKNMII = async (search, sort, skip) => {
             .sort(sort)
             .skip(parseInt(skip))
             .limit(10)
-            .select('photos yearsOfLife biography_ru biography_kg biography_eng name updatedAt _id');
     } else {
         count = await AuthorArtworkMuseumKNMII.count({
             $or: [
@@ -78,7 +77,6 @@ const getAuthorArtworkMuseumKNMII = async (search, sort, skip) => {
             .sort(sort)
             .skip(parseInt(skip))
             .limit(10)
-            .select('photos yearsOfLife biography_ru biography_kg biography_eng name updatedAt _id');
     }
     for (let i=0; i<findResult.length; i++){
         let photos = ''
@@ -116,7 +114,7 @@ const deleteAuthorArtworkMuseumKNMII = async (id) => {
 
 const getIdsAuthorArtworkMuseumKNMII = async () => {
     try{
-        return(await AuthorArtworkMuseumKNMII.find().select('_id name'));
+        return(await AuthorArtworkMuseumKNMII.find());
     } catch(error) {
         console.log(error)
     }
