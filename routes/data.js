@@ -182,6 +182,10 @@ router.post('/add', async (req, res) => {
             whatermark = []
             whatermarkThumbnail = []
             for (let i = 0; i < parseInt(req.body.fileLength); i++) {
+                if(req.body['fileName' + i].length>10)
+                    req.body['fileName' + i] = req.body['fileName' + i].substring(req.body['fileName' + i].length-10)
+                while(req.body['fileName' + i].includes(' '))
+                    req.body['fileName' + i] = req.body['fileName' + i].replace(' ', '')
                 let filename = randomstring.generate(7) + req.body['fileName' + i];
                 while(filename.includes(','))
                     filename = filename.replace(',', '')
@@ -212,7 +216,7 @@ router.post('/add', async (req, res) => {
                         await image.resize(320, Jimp.AUTO);
                         await image.write(filepathThumbnail);
                         if(req.body.name == 'Произведение') {
-                            let font = await Jimp.loadFont(Jimp.FONT_SANS_32_WHITE);
+                            let font = await Jimp.loadFont(Jimp.FONT_SANS_64_BLACK);
                             image = await Jimp.read(filepath)
                             await image.print(font, 10, 10, 'KNMII')
                             await image.write(filepathWhatermark);
@@ -395,6 +399,8 @@ router.post('/add', async (req, res) => {
                                     author: myNew.author,
                                     genre: myNew.genre,
                                     genre1: myNew.genre1,
+                                    genre1_kg: myNew.genre1_kg,
+                                    genre1_eng: myNew.genre1_eng,
                                     in: myNew.in,
                                     description_ru: myNew.description_ru,
                                     description_eng: myNew.description_eng,
@@ -552,6 +558,8 @@ router.post('/add', async (req, res) => {
                     author: myNew.author,
                     genre: myNew.genre,
                     genre1: myNew.genre1,
+                    genre1_kg: myNew.genre1_kg,
+                    genre1_eng: myNew.genre1_eng,
                     in: myNew.in,
                     description_ru: myNew.description_ru,
                     description_eng: myNew.description_eng,

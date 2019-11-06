@@ -8,7 +8,11 @@ const getById = async (id) => {
 const getStyleOrMaterial = async (genre) => {
     let data = await ArtworkMuseumKNMII.find({genre: genre}).distinct('genre1')
     data.sort()
-    return data
+    let data_kg = await ArtworkMuseumKNMII.find({genre: genre}).distinct('genre1_kg')
+    data_kg.sort()
+    let data_eng = await ArtworkMuseumKNMII.find({genre: genre}).distinct('genre1_eng')
+    data_eng.sort()
+    return {ru: data, eng: data_eng, kg: data_kg}
 }
 
 const view = async (id) => {
@@ -28,15 +32,15 @@ const getClient = async (search, sort, skip, genre) => {
     if(sort===''){
         return await ArtworkMuseumKNMII
             .find({genre: genre})
-            .sort('name_ru')
+            .sort('-createdAt')
             .skip(parseInt(skip))
             .limit(30)
             .populate({path: 'genre', select: 'name_ru name_kg name_eng'})
             .populate({path: 'author', select: 'name yearsOfLife'})
     } else if(sort==='styleOrMaterial'){
         return await ArtworkMuseumKNMII
-            .find({genre: genre, genre1: search})
-            .sort('name_ru')
+            .find({genre: genre, $or: [{genre1: search}, {genre1_kg: search}, {genre1_eng: search}]})
+            .sort('-createdAt')
             .skip(parseInt(skip))
             .limit(30)
             .populate({path: 'genre', select: 'name_ru name_kg name_eng'})
@@ -44,7 +48,7 @@ const getClient = async (search, sort, skip, genre) => {
     } else if(sort==='author'){
         return await ArtworkMuseumKNMII
             .find({genre: genre, author: search})
-            .sort('name_ru')
+            .sort('-createdAt')
             .skip(parseInt(skip))
             .limit(30)
             .populate({path: 'genre', select: 'name_ru name_kg name_eng'})
@@ -52,7 +56,7 @@ const getClient = async (search, sort, skip, genre) => {
     } else if(sort==='date'){
           return await ArtworkMuseumKNMII
             .find({genre: genre, date: { '$regex': search, '$options': 'i' } })
-            .sort('name_ru')
+            .sort('-createdAt')
             .skip(parseInt(skip))
             .limit(30)
             .populate({path: 'genre', select: 'name_ru name_kg name_eng'})
@@ -111,12 +115,14 @@ const getArtworkMuseumKNMII = async (search, sort, skip) => {
         'автор',
         'тип',
         'жанр',
+        'жанр_kg',
+        'genre',
         'номер',
         'создан',
         '_id'
     ];
     if(sort == undefined||sort=='')
-        sort = '-updatedAt';
+        sort = '-createdAt';
     else if(sort[0]=='картина'&&sort[1]=='descending')
         sort = '-image';
     else if(sort[0]=='картина'&&sort[1]=='ascending')
@@ -170,9 +176,9 @@ const getArtworkMuseumKNMII = async (search, sort, skip) => {
     else if(sort[0]=='автор'&&sort[1]=='descending')
         sort = '-';
     else if(sort[0]=='создан'&&sort[1]=='descending')
-        sort = '-updatedAt';
+        sort = '-createdAt';
     else if(sort[0]=='создан'&&sort[1]=='ascending')
-        sort = 'updatedAt';
+        sort = 'createdAt';
     if(search == ''){
         count = await ArtworkMuseumKNMII.count();
         findResult = await ArtworkMuseumKNMII
@@ -227,11 +233,16 @@ const getArtworkMuseumKNMII = async (search, sort, skip) => {
                 match: {name_ru: {'$regex': search, '$options': 'i'}}
             });
     }
-    console.log(findResult)
     for (let i=0; i<findResult.length; i++){
         let genre1 = ''
         if(findResult[i].genre1 != undefined)
             genre1 = findResult[i].genre1
+        let genre1_kg = ''
+        if(findResult[i].genre1_kg != undefined)
+            genre1_kg = findResult[i].genre1_kg
+        let genre1_eng = ''
+        if(findResult[i].genre1_eng != undefined)
+            genre1_eng = findResult[i].genre1_eng
         let author = ''
         if(findResult[i].author != undefined)
             author = findResult[i].author.name+'\n'+findResult[i].author._id
@@ -244,7 +255,27 @@ const getArtworkMuseumKNMII = async (search, sort, skip) => {
         let year = ''
         if(findResult[i].year != undefined)
             year = findResult[i].year
-        data.push([findResult[i].image, findResult[i].image_whatermark, findResult[i].name_ru, findResult[i].styleOrMaterial_ru, findResult[i].description_ru, findResult[i].name_kg, findResult[i].styleOrMaterial_kg, findResult[i].description_kg, findResult[i].name_eng, findResult[i].styleOrMaterial_eng, findResult[i].description_eng, findResult[i].size, findResult[i].date, year, findResult[i].views, author, genre, genre1, in1, format.asString('yyyy.dd.MM hh:mm', findResult[i].updatedAt), findResult[i]._id]);
+        data.push([
+            findResult[i].image,
+            findResult[i].image_whatermark,
+            findResult[i].name_ru,
+            findResult[i].styleOrMaterial_ru,
+            findResult[i].description_ru,
+            findResult[i].name_kg,
+            findResult[i].styleOrMaterial_kg,
+            findResult[i].description_kg,
+            findResult[i].name_eng,
+            findResult[i].styleOrMaterial_eng,
+            findResult[i].description_eng,
+            findResult[i].size,
+            findResult[i].date,
+            year,
+            findResult[i].views,
+            author,
+            genre,
+            genre1,
+            genre1_kg,
+            genre1_eng, in1, format.asString('yyyy.dd.MM hh:mm', findResult[i].updatedAt), findResult[i]._id]);
     }
     return {data: data, count: count, row: row}
 }
@@ -260,7 +291,6 @@ const addArtworkMuseumKNMII = async (object) => {
 
 const setArtworkMuseumKNMII = async (object, id) => {
     try{
-
         await ArtworkMuseumKNMII.updateOne({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)

@@ -74,6 +74,12 @@ const ArtworkMuseumKNMIISchema = mongoose.Schema({
         type: String,
         required: true
     },
+    genre1_kg: {
+        type: String,
+    },
+    genre1_eng: {
+        type: String,
+    },
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'AuthorArtworkMuseumKNMII'
